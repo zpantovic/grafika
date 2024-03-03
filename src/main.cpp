@@ -177,6 +177,9 @@ int main() {
     Model brod("resources/objects/svbrod1/ufo.obj");
     brod.SetShaderTextureNamePrefix("material.");
 
+    Model alien("resources/objects/babyoda3/YODABABY.obj");
+    alien.SetShaderTextureNamePrefix("material.");
+
     PointLight& pointLight = programState->pointLight;
     pointLight.position = glm::vec3(4.0f, 4.0, 0.0);
     pointLight.ambient = glm::vec3(0.1, 0.1, 0.1);
@@ -370,7 +373,15 @@ int main() {
         model = glm::scale(model, glm::vec3(0.7));    // it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
         brod.Draw(ourShader);
-        
+
+        model = glm::translate(model,
+                               glm::vec3(0.0f, -5.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.8));    // it's a bit too big for our scene, so scale it down
+        float rotating = 2.5f*sin(glfwGetTime());
+        model=glm::rotate(model, rotating, glm::vec3(0.0f, 1.0f, 0.0f));
+        ourShader.setMat4("model", model);
+        alien.Draw(ourShader);
+
 
         // skybox uvek na kraju
         glDepthFunc(GL_LEQUAL);
