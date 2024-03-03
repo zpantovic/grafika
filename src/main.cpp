@@ -156,8 +156,6 @@ int main() {
     ImGuiIO &io = ImGui::GetIO();
     (void) io;
 
-
-
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330 core");
 
@@ -176,6 +174,8 @@ int main() {
 //    Model ourModel("resources/objects/backpack/backpack.obj");
 //    ourModel.SetShaderTextureNamePrefix("material.");
 
+    Model brod("resources/objects/svbrod1/ufo.obj");
+    brod.SetShaderTextureNamePrefix("material.");
 
     PointLight& pointLight = programState->pointLight;
     pointLight.position = glm::vec3(4.0f, 4.0, 0.0);
@@ -183,9 +183,9 @@ int main() {
     pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
 
-    pointLight.constant = 1.0f;
-    pointLight.linear = 0.09f;
-    pointLight.quadratic = 0.032f;
+    pointLight.constant = 0.21f;
+    pointLight.linear = 0.003f;
+    pointLight.quadratic = 0.001f;
 
 //    float cubeVertices[] = {
 //            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
@@ -308,8 +308,8 @@ int main() {
 
     unsigned int cubemapTexture = loadCubemap(faces);
 
-//    skyboxShader.use();
-//    skyboxShader.setInt("skybox", 0);
+    skyboxShader.use();
+    skyboxShader.setInt("skybox", 0);
 
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -339,8 +339,8 @@ int main() {
 
         // don't forget to enable shader before setting uniforms
         ourShader.use();
-        pointLight.position = glm::vec3(4.0 * cos(currentFrame), 4.0f, 4.0 * sin(currentFrame));
-        ourShader.setVec3("pointLight.position", pointLight.position);
+//        pointLight.position = glm::vec3(4.0 * cos(currentFrame), 4.0f, 4.0 * sin(currentFrame));
+        ourShader.setVec3("pointLight.position", glm::vec3(0.0f,2.0f,0.0f));
         ourShader.setVec3("pointLight.ambient", pointLight.ambient);
         ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
         ourShader.setVec3("pointLight.specular", pointLight.specular);
@@ -349,6 +349,7 @@ int main() {
         ourShader.setFloat("pointLight.quadratic", pointLight.quadratic);
         ourShader.setVec3("viewPosition", programState->camera.Position);
         ourShader.setFloat("material.shininess", 32.0f);
+
         // view/projection transformations
 //        glm::mat4 projection = glm::perspective(glm::radians(programState->camera.Zoom),
 //                                                (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
@@ -363,6 +364,13 @@ int main() {
 //        model = glm::scale(model, glm::vec3(programState->backpackScale));    // it's a bit too big for our scene, so scale it down
 //        ourShader.setMat4("model", model);
 //        ourModel.Draw(ourShader);
+
+        model = glm::translate(model,
+                               glm::vec3(0.0f, 2.5f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.7));    // it's a bit too big for our scene, so scale it down
+        ourShader.setMat4("model", model);
+        brod.Draw(ourShader);
+        
 
         // skybox uvek na kraju
         glDepthFunc(GL_LEQUAL);
