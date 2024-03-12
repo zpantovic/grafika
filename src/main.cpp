@@ -29,10 +29,9 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 unsigned int loadCubemap(vector<std::string> faces);
 
-
 // settings
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1200;
+const unsigned int SCR_HEIGHT = 900;
 
 // camera
 
@@ -169,6 +168,22 @@ int main() {
 
     Shader skyboxShader("resources/shaders/skybox.vs", "resources/shaders/skybox.fs");
 
+
+    unsigned int colorBuffers[2];
+    glGenTextures(2, colorBuffers);
+    for (unsigned int i = 0; i < 2; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, colorBuffers[i]);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        // attach texture to framebuffer
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, colorBuffers[i], 0);
+    }
+
+
     // load models
     // -----------
 //    Model ourModel("resources/objects/backpack/backpack.obj");
@@ -179,6 +194,9 @@ int main() {
 
     Model alien("resources/objects/babyoda3/YODABABY.obj");
     alien.SetShaderTextureNamePrefix("material.");
+
+    Model moon("resources/objects/moon/moon.obj");
+    moon.SetShaderTextureNamePrefix("material.");
 
     PointLight& pointLight = programState->pointLight;
     pointLight.position = glm::vec3(4.0f, 4.0, 0.0);
@@ -300,12 +318,12 @@ int main() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
     vector<std::string> faces{
-            FileSystem::getPath("resources/textures/skybox/skybox/right.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox/left.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox/up.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox/down.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox/front.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox/back.png")
+            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_right1.png"),
+            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_left2.png"),
+            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_bottom4.png"),
+            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_top3.png"),
+            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_front5.png"),
+            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_back6.png")
     };
    // stbi_set_flip_vertically_on_load(true);
 
@@ -313,6 +331,8 @@ int main() {
 
     skyboxShader.use();
     skyboxShader.setInt("skybox", 0);
+
+
 
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -342,8 +362,12 @@ int main() {
 
         // don't forget to enable shader before setting uniforms
         ourShader.use();
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
 //        pointLight.position = glm::vec3(4.0 * cos(currentFrame), 4.0f, 4.0 * sin(currentFrame));
-        ourShader.setVec3("pointLight.position", glm::vec3(0.0f,2.0f,0.0f));
+        ourShader.setVec3("pointLight.position", glm::vec3(0.0f,78.0f,0.0f));
         ourShader.setVec3("pointLight.ambient", pointLight.ambient);
         ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
         ourShader.setVec3("pointLight.specular", pointLight.specular);
@@ -368,15 +392,29 @@ int main() {
 //        ourShader.setMat4("model", model);
 //        ourModel.Draw(ourShader);
 
+
         model = glm::translate(model,
-                               glm::vec3(0.0f, 2.5f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.7));    // it's a bit too big for our scene, so scale it down
+                               glm::vec3(0.0f, 80.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.8));    // it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
         brod.Draw(ourShader);
 
         model = glm::translate(model,
-                               glm::vec3(0.0f, -5.0f, 0.0f)); // translate it down so it's at the center of the scene
+                               glm::vec3(0.0f, -20.7f, 0.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.8));    // it's a bit too big for our scene, so scale it down
+        ourShader.setMat4("model", model);
+//        brod.Draw(ourShader);
+
+        model = glm::translate(model,
+                               glm::vec3(0.0f, -30.0f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(4));    // it's a bit too big for our scene, so scale it down
+        ourShader.setMat4("model", model);
+        moon.Draw(ourShader);
+
+
+        model = glm::translate(model,
+                               glm::vec3(0.0f, 10.9f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.3));    // it's a bit too big for our scene, so scale it down
         float rotating = 2.5f*sin(glfwGetTime());
         model=glm::rotate(model, rotating, glm::vec3(0.0f, 1.0f, 0.0f));
         ourShader.setMat4("model", model);
@@ -401,6 +439,7 @@ int main() {
         glBindVertexArray(0);
         glDepthFunc(GL_LESS); //depth function back to normal state.
 
+
         if (programState->ImGuiEnabled)
             DrawImGui(programState);
 
@@ -423,6 +462,7 @@ int main() {
     return 0;
 }
 
+
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window) {
@@ -437,6 +477,7 @@ void processInput(GLFWwindow *window) {
         programState->camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         programState->camera.ProcessKeyboard(RIGHT, deltaTime);
+
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
