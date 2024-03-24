@@ -9,3 +9,21 @@ Prazan projekat sa pratećim bibliotekama koje koristimo na času.
 5. Zaglavlja (h i hpp) fajlovi idu u include
 6. Šejderi idu u folder shaders. `Vertex shader` ima ekstenziju `.vs`, `fragment shader` ima ekstenziju `.fs`
 7. ALT+SHIFT+F10 -> project_base -> run
+
+# Komande
+* `ESC` - Prekida izvrsavanje programa
+* `WASD` - Pomeranje kamere
+* `G` - Ukljuci/Iskljuci ImGui
+* `SPACE` - Ukljuci/Iskljuci HDR
+* `B` - Ukljuci/Iskljuci bloom
+* `Q` - Smanjuje exposure parametar
+* `E` - Povecava exposure parametar
+
+# Implementirane oblasti
+* `Grupa A` - Cubemaps(skybox)
+* `Grupa B` - HDR i bloom
+
+# Resursi
+* **Modeli** su preuzeti sa [Sketchfab](https://sketchfab.com/)
+* **Skybox teksture** su preuzete sa [OpenGameArt](https://opengameart.org/content/space-skyboxes-0)
+
