@@ -419,7 +419,7 @@ int main() {
 
 
 //        pointLight.position = glm::vec3(4.0 * cos(currentFrame), 4.0f, 4.0 * sin(currentFrame));
-        ourShader.setVec3("pointLight.position", glm::vec3(0.0f,78.0f,-4.0f));
+        ourShader.setVec3("pointLight.position", glm::vec3(-2.0f,78.0f,-4.0f));
         ourShader.setVec3("pointLight.ambient", pointLight.ambient);
         ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
         ourShader.setVec3("pointLight.specular", pointLight.specular);
