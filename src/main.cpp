@@ -1,7 +1,6 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-// Inicijalni commit
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -38,12 +37,10 @@ bool bloomKeyPressed = false;
 int increaseSpeed = 1.5f;
 float exposure = 1.0f;
 
-// settings
 const unsigned int SCR_WIDTH = 1200;
 const unsigned int SCR_HEIGHT = 900;
 
 // camera
-
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -153,7 +150,6 @@ int main() {
         return -1;
     }
 
-    // tell stb_image.h to flip loaded texture's on the y-axis (before loading model).
     stbi_set_flip_vertically_on_load(true);
 
     programState = new ProgramState;
@@ -170,9 +166,9 @@ int main() {
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330 core");
 
-    // configure global opengl state
-    // -----------------------------
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // build and compile shaders
     // -------------------------
@@ -213,7 +209,7 @@ int main() {
         std::cout << "Framebuffer not complete!" << std::endl;
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-    // ping-pong-framebuffer for blurring
+    // ping-pong
     unsigned int pingpongFBO[2];
     unsigned int pingpongColorbuffers[2];
     glGenFramebuffers(2, pingpongFBO);
@@ -235,9 +231,6 @@ int main() {
 
     // load models
     // -----------
-//    Model ourModel("resources/objects/backpack/backpack.obj");
-//    ourModel.SetShaderTextureNamePrefix("material.");
-
 
     Model ostrvo("resources/objects/island1/island.obj");
     ostrvo.SetShaderTextureNamePrefix("material.");
@@ -258,49 +251,6 @@ int main() {
     pointLight.linear = 0.0003f;
     pointLight.quadratic = 0.000005f;
 
-//    float cubeVertices[] = {
-//            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-//             0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
-//            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-//            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-//            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-//            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
-//
-//            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-//            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-//            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-//            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
-//            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
-//            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-//
-//            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-//            -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-//            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-//            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-//            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-//            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-//
-//            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-//            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-//            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-//            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-//            0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-//            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-//
-//            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-//            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
-//            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-//            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
-//            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
-//            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
-//
-//            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-//            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
-//            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-//            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
-//            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
-//            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
-//    };
 
     float skyboxVertices[] = {
             // aPos
@@ -347,16 +297,6 @@ int main() {
             1.0f, -1.0f,  1.0f
     };
 
-//    unsigned int cubeVAO, cubeVBO;
-//    glGenVertexArrays(1, &cubeVAO);
-//    glGenBuffers(1, &cubeVBO);
-//    glBindVertexArray(cubeVAO);
-//    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
-//    glEnableVertexAttribArray(0);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)0);
-//    glEnableVertexAttribArray(1);
-//    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5*sizeof(float), (void*)(3*sizeof(float)));
 
     unsigned int skyboxVAO, skyboxVBO;
     glGenVertexArrays(1, &skyboxVAO);
@@ -388,20 +328,11 @@ int main() {
     hdrShader.setInt("bloomBlur", 1);
 
 
-    // draw in wireframe
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    // render loop
-    // -----------
     while (!glfwWindowShouldClose(window)) {
-        // per-frame time logic
-        // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // input
-        // -----
         processInput(window);
 
 
@@ -420,8 +351,6 @@ int main() {
         glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-//        pointLight.position = glm::vec3(4.0 * cos(currentFrame), 4.0f, 4.0 * sin(currentFrame));
         ourShader.setVec3("pointLight.position", glm::vec3(0,-40,0));
         ourShader.setVec3("pointLight.ambient", pointLight.ambient);
         ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
@@ -443,53 +372,41 @@ int main() {
         ourShader.setFloat("material.shininess", 32.0f);
 
 
-        // view/projection transformations
-//        glm::mat4 projection = glm::perspective(glm::radians(programState->camera.Zoom),
-//                                                (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
-//        glm::mat4 view = programState->camera.GetViewMatrix();
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
-        // render the loaded model
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+
         glm::mat4 model = glm::mat4(1.0f);
-//        model = glm::translate(model,
-//                               programState->backpackPosition); // translate it down so it's at the center of the scene
-//        model = glm::scale(model, glm::vec3(programState->backpackScale));    // it's a bit too big for our scene, so scale it down
-//        ourShader.setMat4("model", model);
-//        ourModel.Draw(ourShader);
-
-
 
         model = glm::translate(model,
-                               programState->ostrvoPosition); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.04));    // it's a bit too big for our scene, so scale it down
+                               programState->ostrvoPosition);
+        model = glm::scale(model, glm::vec3(0.04));
         ourShader.setMat4("model", model);
         ostrvo.Draw(ourShader);
 
 
         model = glm::translate(model,
-                               programState->brodPosition); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(100));    // it's a bit too big for our scene, so scale it down
+                               programState->brodPosition);
+        model = glm::scale(model, glm::vec3(100));
         ourShader.setMat4("model", model);
         brod.Draw(ourShader);
 
         model = glm::translate(model,
-                               programState->ostrvoPosition + glm::vec3(-21.0f, 22.6f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.01));    // it's a bit too big for our scene, so scale it down
+                               programState->ostrvoPosition + glm::vec3(-21.0f, 22.6f, 0.0f));
+        model = glm::scale(model, glm::vec3(0.01));
         ourShader.setMat4("model", model);
         yoda.Draw(ourShader);
 
         model = glm::translate(model,
-                               programState->yodaPosition); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(80));    // it's a bit too big for our scene, so scale it down
+                               programState->yodaPosition);
+        model = glm::scale(model, glm::vec3(80));
         float rotating = 1.5*glfwGetTime();
         model=glm::rotate(model, rotating, glm::vec3(0.0f, 1.0f, 0.0f));
         ourShader.setMat4("model", model);
         yoda.Draw(ourShader);
 
-
-
-        // skybox uvek na kraju
         glDepthFunc(GL_LEQUAL);
         skyboxShader.use();
         model = glm::mat4(1.0f);
@@ -499,15 +416,14 @@ int main() {
         skyboxShader.setMat4("view", view);
         skyboxShader.setMat4("projection", projection);
 
-        // skybox cube
+        // skybox
         glBindVertexArray(skyboxVAO);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
-        glDepthFunc(GL_LESS); //depth function back to normal state.
+        glDepthFunc(GL_LESS);
 
-        //loading
         //pingpong
         bool horizontal = true, first_iteration = true;
         unsigned int amount = 10;
@@ -526,7 +442,7 @@ int main() {
         }
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        // hdr/bloom
+        // hdr i bloom
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         hdrShader.use();
         glActiveTexture(GL_TEXTURE0);
