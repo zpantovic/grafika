@@ -71,6 +71,9 @@ struct ProgramState {
     Camera camera;
     bool CameraMouseMovementUpdateEnabled = true;
     glm::vec3 backpackPosition = glm::vec3(0.0f);
+    glm::vec3 ostrvoPosition = glm::vec3(0.0f, -30.0f, 0.0f);
+    glm::vec3 yodaPosition = glm::vec3(2100.0f, 250.0f, 0.0f);
+    glm::vec3 brodPosition = glm::vec3(2100.0f, 600.0f, 0.0f);
     float backpackScale = 1.0f;
     PointLight pointLight;
     ProgramState()
@@ -235,14 +238,15 @@ int main() {
 //    Model ourModel("resources/objects/backpack/backpack.obj");
 //    ourModel.SetShaderTextureNamePrefix("material.");
 
-    Model brod("resources/objects/svbrod1/ufo.obj");
-    brod.SetShaderTextureNamePrefix("material.");
-
-    Model alien("resources/objects/babyoda3/YODABABY.obj");
-    alien.SetShaderTextureNamePrefix("material.");
 
     Model ostrvo("resources/objects/island1/island.obj");
     ostrvo.SetShaderTextureNamePrefix("material.");
+
+    Model yoda("resources/objects/babyoda3/YODABABY.obj");
+    yoda.SetShaderTextureNamePrefix("material.");
+
+    Model brod("resources/objects/svbrod1/ufo.obj");
+    brod.SetShaderTextureNamePrefix("material.");
 
     PointLight& pointLight = programState->pointLight;
     pointLight.position = glm::vec3(100.0f, 4.0, 0.0);
@@ -444,32 +448,26 @@ int main() {
 //        ourModel.Draw(ourShader);
 
 
+
         model = glm::translate(model,
-                               glm::vec3(0.0f, 80.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.8));    // it's a bit too big for our scene, so scale it down
+                               programState->ostrvoPosition); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.04));    // it's a bit too big for our scene, so scale it down
+        ourShader.setMat4("model", model);
+        ostrvo.Draw(ourShader);
+
+        model = glm::translate(model,
+                               programState->brodPosition); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(100));    // it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
         brod.Draw(ourShader);
 
         model = glm::translate(model,
-                               glm::vec3(-84.0f, -6.7f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.8));    // it's a bit too big for our scene, so scale it down
-        ourShader.setMat4("model", model);
-//        brod.Draw(ourShader);
-
-        model = glm::translate(model,
-                               glm::vec3(0.0f, -30.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.05));    // it's a bit too big for our scene, so scale it down
-        ourShader.setMat4("model", model);
-        ostrvo.Draw(ourShader);
-
-
-        model = glm::translate(model,
-                               glm::vec3(0.0f, -45.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(0.3));    // it's a bit too big for our scene, so scale it down
-        float rotating = 2.5f*sin(glfwGetTime());
+                               programState->yodaPosition); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(80));    // it's a bit too big for our scene, so scale it down
+        float rotating = 1.5*glfwGetTime();
         model=glm::rotate(model, rotating, glm::vec3(0.0f, 1.0f, 0.0f));
         ourShader.setMat4("model", model);
-        alien.Draw(ourShader);
+        yoda.Draw(ourShader);
 
 
         // skybox uvek na kraju
@@ -477,7 +475,7 @@ int main() {
         skyboxShader.use();
         model = glm::mat4(1.0f);
         projection = glm::perspective(glm::radians(programState->camera.Zoom),
-                                      (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 300.0f);
+                                      (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.3f, 200.0f);
         view = glm::mat4(glm::mat3(programState->camera.GetViewMatrix()));
         skyboxShader.setMat4("view", view);
         skyboxShader.setMat4("projection", projection);
