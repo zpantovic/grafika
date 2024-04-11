@@ -25,5 +25,5 @@ Prazan projekat sa pratećim bibliotekama koje koristimo na času.
 
 # Resursi
 * **Modeli** su preuzeti sa [Sketchfab](https://sketchfab.com/)
-* **Skybox teksture** su preuzete sa [OpenGameArt](https://opengameart.org/content/space-skyboxes-0)
+* **Skybox teksture** su preuzete sa [OpenGameArt](https://opengameart.org/content/cloudy-skyboxes)
 

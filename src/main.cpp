@@ -254,7 +254,7 @@ int main() {
     pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
 
-    pointLight.constant = 0.350f;
+    pointLight.constant = 0.300f;
     pointLight.linear = 0.0003f;
     pointLight.quadratic = 0.000005f;
 
@@ -431,6 +431,17 @@ int main() {
         ourShader.setFloat("pointLight.quadratic", pointLight.quadratic);
         ourShader.setVec3("viewPosition", programState->camera.Position);
         ourShader.setFloat("material.shininess", 32.0f);
+
+        ourShader.setVec3("pointLight.position", glm::vec3(85.0f, -16.6f, 0.0f));
+        ourShader.setVec3("pointLight.ambient", pointLight.ambient);
+        ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
+        ourShader.setVec3("pointLight.specular", pointLight.specular);
+        ourShader.setFloat("pointLight.constant", pointLight.constant);
+        ourShader.setFloat("pointLight.linear", pointLight.linear);
+        ourShader.setFloat("pointLight.quadratic", pointLight.quadratic);
+        ourShader.setVec3("viewPosition", programState->camera.Position);
+        ourShader.setFloat("material.shininess", 32.0f);
+
 
         // view/projection transformations
 //        glm::mat4 projection = glm::perspective(glm::radians(programState->camera.Zoom),
