@@ -35,7 +35,7 @@ bool hdr = true;
 bool hdrKeyPressed = false;
 bool bloom = false;
 bool bloomKeyPressed = false;
-int increaseSpeed = 1.0f;
+int increaseSpeed = 1.5f;
 float exposure = 1.0f;
 
 // settings
@@ -241,18 +241,18 @@ int main() {
     Model alien("resources/objects/babyoda3/YODABABY.obj");
     alien.SetShaderTextureNamePrefix("material.");
 
-    Model moon("resources/objects/moon/moon.obj");
-    moon.SetShaderTextureNamePrefix("material.");
+    Model ostrvo("resources/objects/island1/island.obj");
+    ostrvo.SetShaderTextureNamePrefix("material.");
 
     PointLight& pointLight = programState->pointLight;
-    pointLight.position = glm::vec3(4.0f, 4.0, 0.0);
+    pointLight.position = glm::vec3(100.0f, 4.0, 0.0);
     pointLight.ambient = glm::vec3(0.1, 0.1, 0.1);
     pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
 
-    pointLight.constant = 0.100f;
-    pointLight.linear = 0.075f;
-    pointLight.quadratic = 0.001f;
+    pointLight.constant = 0.350f;
+    pointLight.linear = 0.0003f;
+    pointLight.quadratic = 0.000005f;
 
 //    float cubeVertices[] = {
 //            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
@@ -364,14 +364,14 @@ int main() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 
     vector<std::string> faces{
-            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_right1.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_left2.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_bottom4.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_top3.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_front5.png"),
-            FileSystem::getPath("resources/textures/skybox/skybox5/red/bkg2_back6.png")
+            FileSystem::getPath("resources/textures/skybox/sky/front.jpg"),
+            FileSystem::getPath("resources/textures/skybox/sky/back.jpg"),
+            FileSystem::getPath("resources/textures/skybox/sky/top.jpg"),
+            FileSystem::getPath("resources/textures/skybox/sky/bottom.jpg"),
+            FileSystem::getPath("resources/textures//skybox/sky/left.jpg"),
+            FileSystem::getPath("resources/textures/skybox/sky/right.jpg")
     };
-   // stbi_set_flip_vertically_on_load(true);
+     stbi_set_flip_vertically_on_load(true);
 
     unsigned int cubemapTexture = loadCubemap(faces);
 
@@ -381,7 +381,6 @@ int main() {
     bloomShader.setInt("image", 0);
 
     hdrShader.use();
-    hdrShader.setInt("hdrBuffer", 0);
     hdrShader.setInt("bloomBlur", 1);
 
 
@@ -409,7 +408,7 @@ int main() {
 
         glm::mat4 view = programState->camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(programState->camera.Zoom),
-                                                (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
+                                                (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 400.0f);
 
         // don't forget to enable shader before setting uniforms
         ourShader.use();
@@ -419,7 +418,7 @@ int main() {
 
 
 //        pointLight.position = glm::vec3(4.0 * cos(currentFrame), 4.0f, 4.0 * sin(currentFrame));
-        ourShader.setVec3("pointLight.position", glm::vec3(-2.0f,78.0f,-4.0f));
+        ourShader.setVec3("pointLight.position", glm::vec3(0,-40,0));
         ourShader.setVec3("pointLight.ambient", pointLight.ambient);
         ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
         ourShader.setVec3("pointLight.specular", pointLight.specular);
@@ -452,20 +451,20 @@ int main() {
         brod.Draw(ourShader);
 
         model = glm::translate(model,
-                               glm::vec3(0.0f, -20.7f, 0.0f)); // translate it down so it's at the center of the scene
+                               glm::vec3(-84.0f, -6.7f, 0.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.8));    // it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
 //        brod.Draw(ourShader);
 
         model = glm::translate(model,
                                glm::vec3(0.0f, -30.0f, 0.0f)); // translate it down so it's at the center of the scene
-        model = glm::scale(model, glm::vec3(4));    // it's a bit too big for our scene, so scale it down
+        model = glm::scale(model, glm::vec3(0.05));    // it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
-        moon.Draw(ourShader);
+        ostrvo.Draw(ourShader);
 
 
         model = glm::translate(model,
-                               glm::vec3(0.0f, 10.9f, 0.0f)); // translate it down so it's at the center of the scene
+                               glm::vec3(0.0f, -45.0f, 0.0f)); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(0.3));    // it's a bit too big for our scene, so scale it down
         float rotating = 2.5f*sin(glfwGetTime());
         model=glm::rotate(model, rotating, glm::vec3(0.0f, 1.0f, 0.0f));
@@ -478,7 +477,7 @@ int main() {
         skyboxShader.use();
         model = glm::mat4(1.0f);
         projection = glm::perspective(glm::radians(programState->camera.Zoom),
-                                      (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
+                                      (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 300.0f);
         view = glm::mat4(glm::mat3(programState->camera.GetViewMatrix()));
         skyboxShader.setMat4("view", view);
         skyboxShader.setMat4("projection", projection);

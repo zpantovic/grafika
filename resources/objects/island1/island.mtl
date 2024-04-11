@@ -1,0 +1,274 @@
+# Blender MTL File: 'sketchfab_TEST.blend'
+# Material Count: 21
+
+newmtl BALOON
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_BALOON_Normal.jpg
+map_Kd island_Main_BALOON_BaseColor.jpg
+map_Pr island_Main_BALOON_Roughness.jpg
+map_Ks island_Main_BALOON_Emissive.jpg
+map_Pm island_Main_BALOON_Metallic.jpg
+
+newmtl BALOON_BULB
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_BALOON_BULB_BaseColor.jpg
+map_Pr island_Main_BALOON_BULB_Roughness.jpg
+map_Pm island_Main_BALOON_BULB_Metallic.jpg
+map_Ke island_Main_BALOON_BULB_Emissive.jpg
+
+newmtl BALOON_CURVE
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Pm island_Main_BALOON_CURVE_Metallic.jpg
+map_Kd island_Main_BALOON_CURVE_BaseColor.jpg
+map_Pr island_Main_BALOON_CURVE_Roughness.jpg
+
+newmtl DROPS_PIPE
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_DROPS_PIPE_BaseColor.jpg
+map_Pm island_Main_DROPS_PIPE_Metallic.jpg
+map_Pr island_Main_DROPS_PIPE_Roughness.jpg
+
+newmtl ISLAND_BASE
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_ISLAND_BASE_Normal.jpg
+map_Kd island_Main_ISLAND_BASE_BaseColor.jpg
+map_Pm island_Main_ISLAND_BASE_Metallic.jpg
+map_Pr island_Main_ISLAND_BASE_Roughness.jpg
+
+newmtl ISLAND_BASE_SHADOW
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_ISLAND_BASE_SHADOW_BaseColor.jpg
+map_Pm island_Main_ISLAND_BASE_SHADOW_Metallic.jpg
+map_Pr island_Main_ISLAND_BASE_SHADOW_Roughness.jpg
+
+newmtl base_island_additional_pipes
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_base_island_additional_pipes_Normal.jpg
+map_Kd island_Main_base_island_additional_pipes_BaseColor.jpg
+map_Ks island_Main_base_island_additional_pipes_Metallic.jpg
+map_Pr island_Main_base_island_additional_pipes_Roughness.jpg
+
+newmtl base_island_additional_pipes_BEAM.001
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_base_island_additional_pipes_BEAM_BaseColor.jpg
+map_Ke island_Main_base_island_additional_pipes_BEAM_Emissive.jpg
+map_Pm island_Main_base_island_additional_pipes_BEAM_Metallic.jpg
+map_Pr island_Main_base_island_additional_pipes_BEAM_Roughness.jpg
+
+newmtl base_island_additional_pipes_transarent
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_base_island_additional_pipes_transarent_Normal.jpg
+map_Kd island_Main_base_island_additional_pipes_transarent_BaseColor.jpg
+map_Pm island_Main_base_island_additional_pipes_transarent_Metallic.jpg
+map_Pr island_Main_base_island_additional_pipes_transarent_Roughness.jpg
+
+
+newmtl curve_Pipe
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_bump island_Main_curve_Pipe_BaseColor.jpg
+map_Pm island_Main_curve_Pipe_Metallic.jpg
+map_Pr island_Main_curve_Pipe_Roughness.jpg
+
+newmtl island_Connector_CURVE
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_island_Connector_CURVE_Normal.jpg
+map_Kd island_Main_island_Connector_CURVE_BaseColor.jpg
+map_Pm island_Main_island_Connector_CURVE_Metallic.jpg
+map_Pr island_Main_island_Connector_CURVE_Roughness.jpg
+map_Ke island_Main_island_Connector_CURVE_Emissive.jpg
+
+newmtl island_Metal_holders
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_island_Metal_holders_Normal.jpg
+map_Kd island_Main_island_Metal_holders_BaseColor.jpg
+map_Pm island_Main_island_Metal_holders_Metallic.jpg
+map_Pr island_Main_island_Metal_holders_Roughness.jpg
+
+newmtl machine_MAIN
+Ns 90.196078
+Ka 0.000000 0.000000 0.000000
+Kd 0.409600 0.409600 0.409600
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_machine_MAIN_Normal.jpg
+map_Kd island_Main_machine_MAIN_BaseColor.jpg
+map_Pm island_Main_machine_MAIN_Metallic.jpg
+map_Pr island_Main_machine_MAIN_Roughness.jpg
+
+newmtl machine_PRINTER
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.800000 0.800000 0.800000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_machine_PRINTER_Normal.jpg
+map_Kd island_Main_machine_PRINTER_BaseColor.jpg
+map_Pm island_Main_machine_PRINTER_Metallic.jpg
+map_Pr island_Main_machine_PRINTER_Roughness.jpg
+map_Ke island_Main_machine_PRINTER_Emissive.jpg
+
+newmtl machine_REACTOR
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.800000 0.800000 0.800000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_machine_REACTOR_Normal.jpg
+map_Kd island_Main_machine_REACTOR_BaseColor.jpg
+map_Pm island_Main_machine_REACTOR_Metallic.jpg
+map_Pr island_Main_machine_REACTOR_Roughness.jpg
+
+newmtl machine_REACTOR_transparent
+Ns 0.000000
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.800000 0.800000 0.800000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_machine_REACTOR_transparent_Normal.jpg
+map_Kd island_Main_machine_REACTOR_transparent_BaseColor.jpg
+map_Pm island_Main_machine_REACTOR_transparent_Metallic.jpg
+map_Pr island_Main_machine_REACTOR_transparent_Roughness.jpg
+
+newmtl machine_RENTGEN
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Ka island_Main_machine_RENTGEN_Normal.jpg
+map_Kd island_Main_machine_RENTGEN_BaseColor.jpg
+map_Pm island_Main_machine_RENTGEN_Metallic.jpg
+map_Pr island_Main_machine_RENTGEN_Roughness.jpg
+map_Ke island_Main_machine_RENTGEN_Emissive.jpg
+
+newmtl machine_TELEPORT
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_machine_TELEPORT_BaseColor.jpg
+map_Ke island_Main_machine_TELEPORT_Emissive.jpg
+map_Pm island_Main_machine_TELEPORT_Metallic.jpg
+map_Ka island_Main_machine_TELEPORT_Normal.jpg
+map_Pr island_Main_machine_TELEPORT_Roughness.jpg
+
+newmtl machine_TELEPORT_flash
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_machine_TELEPORT_flash_BaseColor.jpg
+map_Ke island_Main_machine_TELEPORT_flash_Emissive.jpg
+map_Pm island_Main_machine_TELEPORT_flash_Metallic.jpg
+map_Pr island_Main_machine_TELEPORT_flash_Roughness.jpg
+
+newmtl machine_TELEPORT_transparent
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd island_Main_machine_TELEPORT_transparent_BaseColor.jpg
+map_Pm island_Main_machine_TELEPORT_transparent_Metallic.jpg
+map_Pr island_Main_machine_TELEPORT_transparent_Roughness.jpg
+
+
+newmtl sphere
+Ns 92.156863
+Ka 0.000000 0.000000 0.000000
+Kd 0.512000 0.512000 0.512000
+Ks 0.500000 0.500000 0.500000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd bgr_texture.png

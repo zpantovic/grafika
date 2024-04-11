@@ -1,0 +1,83 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v4.1.0)
+
+newmtl island
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd Island.png
+
+newmtl tree
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd Tree.jpg
+
+newmtl lambert43
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd TreeStump.jpg
+
+newmtl lantern
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd Lantern.jpg
+
+newmtl barrel
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd Barrel.jpg
+
+newmtl lambert1
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd 
+
+newmtl leaves
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd Leaves.jpg
+
+newmtl axe
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd Axe.jpg
+
+newmtl piles1
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 1
+illum 1
+map_Kd LeafPile.jpg
+
+newmtl waterfall
+Kd 0.800000011920929 0.800000011920929 0.800000011920929
+Ka 0 0 0
+Ke 0 0 0
+d 0.7870908975601196
+illum 1
+map_Kd Waterfall.jpg
+
