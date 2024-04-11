@@ -73,7 +73,7 @@ struct ProgramState {
     glm::vec3 backpackPosition = glm::vec3(0.0f);
     glm::vec3 ostrvoPosition = glm::vec3(0.0f, -30.0f, 0.0f);
     glm::vec3 yodaPosition = glm::vec3(2100.0f, 250.0f, 0.0f);
-    glm::vec3 brodPosition = glm::vec3(2100.0f, 600.0f, 0.0f);
+    glm::vec3 brodPosition = glm::vec3(2100.0f, 700.0f, 0.0f);
     float backpackScale = 1.0f;
     PointLight pointLight;
     ProgramState()
@@ -455,11 +455,18 @@ int main() {
         ourShader.setMat4("model", model);
         ostrvo.Draw(ourShader);
 
+
         model = glm::translate(model,
                                programState->brodPosition); // translate it down so it's at the center of the scene
         model = glm::scale(model, glm::vec3(100));    // it's a bit too big for our scene, so scale it down
         ourShader.setMat4("model", model);
         brod.Draw(ourShader);
+
+        model = glm::translate(model,
+                               programState->ostrvoPosition + glm::vec3(-21.0f, 22.6f, 0.0f)); // translate it down so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.01));    // it's a bit too big for our scene, so scale it down
+        ourShader.setMat4("model", model);
+        yoda.Draw(ourShader);
 
         model = glm::translate(model,
                                programState->yodaPosition); // translate it down so it's at the center of the scene
@@ -468,6 +475,7 @@ int main() {
         model=glm::rotate(model, rotating, glm::vec3(0.0f, 1.0f, 0.0f));
         ourShader.setMat4("model", model);
         yoda.Draw(ourShader);
+
 
 
         // skybox uvek na kraju
