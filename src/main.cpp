@@ -36,6 +36,8 @@ bool bloom = false;
 bool bloomKeyPressed = false;
 int increaseSpeed = 1.5f;
 float exposure = 1.0f;
+bool blinn = false;
+bool blinnKeyPressed = false;
 
 const unsigned int SCR_WIDTH = 1200;
 const unsigned int SCR_HEIGHT = 900;
@@ -247,7 +249,7 @@ int main() {
     pointLight.diffuse = glm::vec3(0.6, 0.6, 0.6);
     pointLight.specular = glm::vec3(1.0, 1.0, 1.0);
 
-    pointLight.constant = 0.300f;
+    pointLight.constant = 0.36f;
     pointLight.linear = 0.0003f;
     pointLight.quadratic = 0.000005f;
 
@@ -359,9 +361,10 @@ int main() {
         ourShader.setFloat("pointLight.linear", pointLight.linear);
         ourShader.setFloat("pointLight.quadratic", pointLight.quadratic);
         ourShader.setVec3("viewPosition", programState->camera.Position);
+        ourShader.setInt("blinn", blinn);
         ourShader.setFloat("material.shininess", 32.0f);
 
-        ourShader.setVec3("pointLight.position", glm::vec3(85.0f, -16.6f, 0.0f));
+        ourShader.setVec3("pointLight.position", glm::vec3(180.0f, 10.6f, 0.0f));
         ourShader.setVec3("pointLight.ambient", pointLight.ambient);
         ourShader.setVec3("pointLight.diffuse", pointLight.diffuse);
         ourShader.setVec3("pointLight.specular", pointLight.specular);
@@ -369,6 +372,7 @@ int main() {
         ourShader.setFloat("pointLight.linear", pointLight.linear);
         ourShader.setFloat("pointLight.quadratic", pointLight.quadratic);
         ourShader.setVec3("viewPosition", programState->camera.Position);
+        ourShader.setInt("blinn", blinn);
         ourShader.setFloat("material.shininess", 32.0f);
 
 
@@ -545,6 +549,19 @@ void processInput(GLFWwindow *window) {
     }
     else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS){
         exposure += 0.005f;
+    }
+    if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS && !blinnKeyPressed)
+    {
+        blinn = !blinn;
+        blinnKeyPressed = true;
+        if (blinn)
+            cout << "Blinn-Phong" << endl;
+        else
+            cout << "Phong" << endl;
+    }
+    if (glfwGetKey(window, GLFW_KEY_B) == GLFW_RELEASE)
+    {
+        blinnKeyPressed = false;
     }
 }
 
